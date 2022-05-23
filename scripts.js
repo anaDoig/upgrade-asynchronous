@@ -10,18 +10,22 @@ showData();
 console.log('-------------');
 
 const button = document.querySelector('button');
+const input = document.querySelector('input');
+
 button.addEventListener('click', getData);
 
 function getData() {
-    const url = 'https://api.nationalize.io';
+    let inputValue = input.value;
+    let url = `https://api.nationalize.io/?name=${inputValue}`;
 
     fetch(url)
         .then( response => {
             return response.json();
-
         })
         .then( result => {
             console.log(result);
         })
+        .catch( error => {
+            console.log(error);
+        })
 };
-
